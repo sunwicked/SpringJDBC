@@ -6,11 +6,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 
 @Entity
 @Table(name="Player") // for matching  entity and table  we can remove annotation
+@NamedQuery(name="get_all_players", query="select p from Player p")
 public class Player {
 
 	@Id
