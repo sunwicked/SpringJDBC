@@ -2,10 +2,25 @@ package com.example.springdata.tennisplayer;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name="Player") // for matching  entity and table  we can remove annotation
+@NamedQuery(name="get_all_players", query="select p from Player p")
 public class Player {
 
+	@Id
+    @GeneratedValue
 	private int id;
     private String name;
+    
+    @Column(name="nationality") //  the column mapping annotation is not needed since the column names
     private String nationality;
     private Date birthDate;
     private int titles;
@@ -14,6 +29,14 @@ public class Player {
     public Player( ) {
     
     }
+    
+    public Player( String name, String nationality, Date birthDate, int titles) {
+		super();
+		this.name = name;
+		this.nationality = nationality;
+		this.birthDate = birthDate;
+		this.titles = titles;
+	}
     
     public Player(int id, String name, String nationality, Date birthDate, int titles) {
 		super();
